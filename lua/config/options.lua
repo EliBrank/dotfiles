@@ -5,3 +5,5 @@ vim.opt.relativenumber = false
 vim.opt.expandtab = true -- Pressing the TAB key will insert actual tab characters
 vim.opt.tabstop = 4 -- Number of spaces tabs count for
 vim.g.autoformat = false -- Globally prevent autoformat on save
+
+vim.opt.viminfo:remove('!')
