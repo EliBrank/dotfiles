@@ -16,7 +16,20 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Sort Tailwind classes on save
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.html", "*.js", "*.jsx", "*.ts", "*.tsx", "*.vue", "*.svelte", "*.astro" },
-  callback = function ()
-    vim.cmd("TailwindSortSync")
+  callback = function()
+    -- Check if tailwindcss LSP is attached to current buffer
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+    local has_tailwind = false
+
+    for _, client in ipairs(clients) do
+      if client.name == "tailwindcss" then
+        has_tailwind = true
+        break
+      end
+    end
+
+    if has_tailwind then
+      vim.cmd("TailwindSortSync")
+    end
   end,
 })
