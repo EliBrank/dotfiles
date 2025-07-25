@@ -13,6 +13,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Prevent strange behavior with * in CSS
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "css", "scss", "less" },
+  callback = function()
+    vim.opt_local.comments = ""
+    vim.opt_local.formatoptions:remove("r")
+    vim.opt_local.formatoptions:remove("o")
+  end,
+})
+
 -- Sort Tailwind classes on save
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.html", "*.js", "*.jsx", "*.ts", "*.tsx", "*.vue", "*.svelte", "*.astro" },

@@ -9,4 +9,4 @@ vim.g.autoformat = false -- Globally prevent autoformat on save
 -- vim.opt.tabstop = num_tabs -- Number of spaces tabs count for
 -- vim.opt.shiftwidth = num_tabs -- Number of spaces for auto-indentation
 
-vim.opt.viminfo:remove('!')
+vim.opt.viminfo:remove("!")
