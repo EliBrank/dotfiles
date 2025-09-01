@@ -8,3 +8,7 @@ vim.keymap.set("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", {})
 vim.keymap.set("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", {})
 vim.keymap.set("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", {})
 vim.keymap.set("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", {})
+
+vim.keymap.set({ "n", "v" }, "<S-C-J>", "5j", { desc = "Move down 5 lines" })
+vim.keymap.set({ "n", "v" }, "<S-NL>", "5j", { desc = "Move down 5 lines" })
+vim.keymap.set({ "n", "v" }, "<S-C-K>", "5k", { desc = "Move up 5 lines" })
