@@ -1,0 +1,57 @@
+# -------------------------
+# Global
+# -------------------------
+add_newline = false
+command_timeout = 500
+
+format = "$directory$rust$python$nodejs$character"
+right_format = "$git_branch"
+
+# -------------------------
+# Directory
+# -------------------------
+[directory]
+truncation_length = 3
+truncate_to_repo = true
+style = "fg:white"
+format = "[$path]($style) "
+
+# -------------------------
+# Git (right side)
+# -------------------------
+[git_branch]
+symbol = " "
+style = "fg:blue"
+format = "[$symbol$branch]($style)"
+
+# Disable everything else git-related
+[git_status]
+disabled = false
+
+[git_commit]
+disabled = false
+
+# -------------------------
+# Languages
+# -------------------------
+[rust]
+symbol = " "
+style = "fg:yellow"
+format = "[$symbol]($style)"
+
+[python]
+symbol = " "
+style = "fg:green"
+format = "[$symbol]($style)"
+
+[nodejs]
+symbol = " "
+style = "fg:cyan"
+format = "[$symbol]($style)"
+
+# -------------------------
+# Prompt symbol
+# -------------------------
+[character]
+success_symbol = "[➜](fg:orange)"
+error_symbol = "[➜](fg:red)"
