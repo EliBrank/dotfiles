@@ -4,6 +4,14 @@
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("v", "kj", "<Esc>", { desc = "Exit visual mode" })
 
+-- Manage marks
+vim.keymap.set("n", "<leader>md", function()
+  vim.cmd("delmarks a-zA-Z0-9")
+  vim.notify("All marks cleared", vim.log.levels.INFO)
+end, { desc = "Clear all marks in buffer" }
+)
+
+-- Tmux-Nvim integration
 vim.keymap.set("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", {})
 vim.keymap.set("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", {})
 vim.keymap.set("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", {})
