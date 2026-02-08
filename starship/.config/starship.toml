@@ -4,8 +4,8 @@
 add_newline = false
 command_timeout = 500
 
-format = "$directory$rust$python$nodejs$character"
-right_format = "$git_branch"
+format = "$directory$rust$python$nodejs$git_branch$character"
+# right_format = "$git_branch"
 
 # -------------------------
 # Directory
@@ -22,21 +22,14 @@ format = "[$path]($style) "
 [git_branch]
 symbol = " "
 style = "fg:blue"
-format = "[$symbol$branch]($style)"
-
-# Disable everything else git-related
-[git_status]
-disabled = false
-
-[git_commit]
-disabled = false
+format = "[$symbol$branch ]($style)"
 
 # -------------------------
 # Languages
 # -------------------------
 [rust]
 symbol = " "
-style = "fg:yellow"
+style = "fg:red"
 format = "[$symbol]($style)"
 
 [python]
@@ -46,7 +39,7 @@ format = "[$symbol]($style)"
 
 [nodejs]
 symbol = " "
-style = "fg:cyan"
+style = "fg:yellow"
 format = "[$symbol]($style)"
 
 # -------------------------
