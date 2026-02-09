@@ -4,7 +4,7 @@
 add_newline = false
 command_timeout = 500
 
-format = "$directory$rust$python$nodejs$git_branch$character"
+format = "$env_var$directory$rust$python$nodejs$git_branch$character"
 # right_format = "$git_branch"
 
 # -------------------------
@@ -34,13 +34,22 @@ format = "[$symbol]($style)"
 
 [python]
 symbol = " "
-style = "fg:green"
+style = "fg:blue"
 format = "[$symbol]($style)"
 
 [nodejs]
 symbol = " "
 style = "fg:yellow"
 format = "[$symbol]($style)"
+
+# -------------------------
+# tmux
+# -------------------------
+[env_var.TMUX]
+symbol = " "
+style = "fg:green"
+format = "[$symbol]($style)"
+variable = "TMUX"
 
 # -------------------------
 # Prompt symbol
