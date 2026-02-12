@@ -43,6 +43,8 @@ if [[ ":${PATH}:" != *":${HOME}/.local/bin:"* ]]; then
   export PATH="${HOME}/.local/bin:${PATH}"
 fi
 
+export PATH="${HOME}/Code/scripts:${PATH}"
+
 # Source rust/cargo env to add bob/cargo to PATH
 if [[ -f "${HOME}/.cargo/env" ]]; then
   source "${HOME}/.cargo/env"
@@ -165,13 +167,16 @@ fi
 # ---------------------
 
 # Alternative, minimal starship config if inside a TMUX session
-if [[ -n "${TMUX-}" ]] && [[ -f "${HOME}/.config/starship-tmux.toml" ]]; then
-  export STARSHIP_CONFIG="${HOME}/.config/starship-tmux.toml"
-fi
+# if [[ -n "${TMUX-}" ]] && [[ -f "${HOME}/.config/starship-tmux.toml" ]]; then
+#   export STARSHIP_CONFIG="${HOME}/.config/starship-tmux.toml"
+# fi
 
 # Execute Starship setup if it exists
 if command -v starship >/dev/null 2>&1; then
-  eval "$(starship init zsh)"
+  type starship_zle-keymap-select >/dev/null || \
+    {
+      eval "$(starship init zsh)"
+    }
 fi
 
 # ---------------------
