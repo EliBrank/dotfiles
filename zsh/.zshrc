@@ -78,8 +78,10 @@ if [[ -f "${ZINIT_DIR}/zinit.zsh" ]]; then
   source "${ZINIT_DIR}/zinit.zsh"
 fi
 
-ZVM_SYSTEM_CLIPBOARD_ENABLED=true
-ZVM_VI_ESCAPE_BINDKEY=kj
+# vi-mode options (plugin version)
+# ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+# ZVM_VI_ESCAPE_BINDKEY=kj
+# ZVM_VI_HIGHLIGHT_BACKGROUND=none
 
 # zinit plugins
 # typeset -f checks if shell function exists
@@ -88,9 +90,9 @@ if typeset -f zinit >/dev/null 2>&1; then
   zinit ice depth=1; zinit light zsh-users/zsh-autosuggestions
   zinit ice depth=1; zinit light zsh-users/zsh-syntax-highlighting
   zinit ice depth=1; zinit light zsh-users/zsh-completions
-  zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
-  # May switch to fast-syntax-highlighting
-  # zinit light zdharma-continuum/fast-syntax-highlighting
+  zinit ice depth=1; zinit light zdharma-continuum/fast-syntax-highlighting
+  # vi-mode plugin (currently using built-in)
+  # zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
 fi
 
 # ---------------------
@@ -201,6 +203,16 @@ if [[ -n $SSH_CONNECTION ]]; then
 else
   export EDITOR='nvim'
 fi
+
+# ---------------------
+# vi-mode
+# ---------------------
+
+bindkey -v
+bindkey -M viins 'kj' vi-cmd-mode
+# Allow backspace/delete to work correctly with history
+bindkey "^H" backward-delete-char
+bindkey "^?" backward-delete-char
 
 # ---------------------
 # Aliases
