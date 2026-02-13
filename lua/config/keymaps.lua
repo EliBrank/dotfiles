@@ -17,8 +17,8 @@ vim.keymap.set("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", {})
 vim.keymap.set("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", {})
 vim.keymap.set("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", {})
 
-vim.keymap.set({ "n", "v" }, "<S-C-J>", "5gj", { desc = "Move down 5 lines" })
-vim.keymap.set({ "n", "v" }, "<S-NL>", "5gj", { desc = "Move down 5 lines" })
-vim.keymap.set({ "n", "v" }, "<S-C-K>", "5gk", { desc = "Move up 5 lines" })
+vim.keymap.set({ "n", "v" }, "<M-j>", "5gj", { desc = "Move down 5 lines" })
+vim.keymap.set({ "n", "v" }, "<M-NL>", "5gj", { desc = "Move down 5 lines" })
+vim.keymap.set({ "n", "v" }, "<M-k>", "5gk", { desc = "Move up 5 lines" })
 
 vim.keymap.set("n", "ZZ", ":qa<CR>", { desc = "Close all windows" })
