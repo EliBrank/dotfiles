@@ -11,6 +11,10 @@ vim.keymap.set("n", "<leader>md", function()
 end, { desc = "Clear all marks in buffer" }
 )
 
+-- Prevent register overwrite on delete/paste
+vim.keymap.set({ "n", "v" }, "x", '"_x')
+vim.keymap.set("v", "p", '"_dP')
+
 -- Tmux-Nvim integration
 vim.keymap.set("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", {})
 vim.keymap.set("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", {})
