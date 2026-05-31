@@ -138,23 +138,11 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 # fzf
 # ---------------------
 
-if [[ -f "${HOME}/.fzf.zsh" ]]; then
-  source "${HOME}/.fzf.zsh"
-else
-  # Check common package-managed install locations if not in $HOME
-  for p in /usr/share/doc/fzf/examples/fzf.zsh /usr/local/opt/fzf/shell/key-bindings.zsh; do
-    if [[ -f "${p}" ]]; then
-      source "${p}" && break
-    fi
-  done
-fi
+export PATH="$HOME/.fzf/bin:$PATH"
 
-# Also check for completions
-for p in "${HOME}/.fzf.zsh" /usr/share/doc/fzf/examples/completion.zsh /usr/local/opt/fzf/shell/completion.zsh; do
-  if [[ -f "${p}" ]]; then
-    source "${p}" && break
-  fi
-done
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
 
 # ---------------------
 # zoxide
