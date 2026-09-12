@@ -156,11 +156,6 @@ fi
 # Starship Prompt
 # ---------------------
 
-# Alternative, minimal starship config if inside a TMUX session
-# if [[ -n "${TMUX-}" ]] && [[ -f "${HOME}/.config/starship-tmux.toml" ]]; then
-#   export STARSHIP_CONFIG="${HOME}/.config/starship-tmux.toml"
-# fi
-
 # Execute Starship setup if it exists
 if command -v starship >/dev/null 2>&1; then
   type starship_zle-keymap-select >/dev/null || \
@@ -186,10 +181,21 @@ function y() {
 # Default Editor
 # ---------------------
 
-if [[ -n $SSH_CONNECTION ]]; then
+if [[ -n "${SSH_CONNECTION}" ]]; then
   export EDITOR='vim'
 else
   export EDITOR='nvim'
+fi
+
+# ---------------------
+# TMUX
+# ---------------------
+
+TMUXIFIER_DIR="${HOME}/.config/tmux/plugins/tmuxifier/bin"
+
+if [[ -d "${TMUXIFIER_DIR}" ]]; then
+  export PATH="${TMUXIFIER_DIR}:${PATH}"
+  command -v tmuxifier >/dev/null 2>&1 && eval "$(tmuxifier init -)"
 fi
 
 # ---------------------
