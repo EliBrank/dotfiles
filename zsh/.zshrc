@@ -195,7 +195,13 @@ TMUXIFIER_DIR="${HOME}/.config/tmux/plugins/tmuxifier/bin"
 
 if [[ -d "${TMUXIFIER_DIR}" ]]; then
   export PATH="${TMUXIFIER_DIR}:${PATH}"
-  command -v tmuxifier >/dev/null 2>&1 && eval "$(tmuxifier init -)"
+fi
+
+if command -v tmuxifier >/dev/null 2>&1; then
+  eval "$(tmuxifier init -)"
+  if [[ -z "${TMUX}" ]]; then
+    tmuxifier load-session default
+  fi
 fi
 
 # ---------------------
