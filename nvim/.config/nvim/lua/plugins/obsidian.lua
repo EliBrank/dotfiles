@@ -1,69 +1,21 @@
 return {
-  "epwalsh/obsidian.nvim",
-  version = "*",  -- recommended, use latest release instead of latest commit
-  lazy = true,
-  ft = "markdown",
-  -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
-  -- event = {
-  --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
-  --   -- E.g. "BufReadPre " .. vim.fn.expand "~" .. "/my-vault/*.md"
-  --   -- refer to `:h file-pattern` for more examples
-  --   "BufReadPre path/to/my-vault/*.md",
-  --   "BufNewFile path/to/my-vault/*.md",
-  -- },
-  dependencies = {
-    -- Required.
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
-    "nvim-treesitter/nvim-treesitter",
-  },
+  "obsidian-nvim/obsidian.nvim",
+  version = "*", -- use latest release, remove to use latest commit
+  ---@module 'obsidian'
+  ---@type obsidian.config
   opts = {
+    legacy_commands = false, -- this will be removed in 4.0.0
     workspaces = {
       {
-        name = "Obsidian",
-        path = "~/Documents/Obsidian",
+        name = "Main",
+        path = "~/Documents/Main",
       },
     },
     ui = {
-      -- Disable built-in markdown rendering (use markdown-render.nvim instead)
-      enable = false,
-      checkboxes = {
-        [" "] = { order = 1 },
-        ["x"] = { order = 2 },
-        ["-"] = { order = 3 },
-      },
+      enable = false
     },
-  },
-  keys = {
-    {
-      "<leader>ob",
-      "<cmd>ObsidianBacklinks<cr>",
-      desc = "Backlinks",
-      ft = "markdown",
+    checkbox = {
+      order = { " ", "x" },
     },
-    {
-      "<leader>of",
-      "<cmd>ObsidianQuickSwitch<cr>",
-      desc = "Quick Switch",
-      ft = "markdown",
-    },
-    {
-      "<leader>on",
-      "<cmd>ObsidianNew<cr>",
-      desc = "New Note",
-      ft = "markdown",
-    },
-    {
-      "<leader>or",
-      "<cmd>ObsidianRename<cr>",
-      desc = "Rename Note",
-      ft = "markdown",
-    },
-    {
-      "<leader>ot",
-      "<cmd>ObsidianTags<cr>",
-      desc = "Tags",
-      ft = "markdown",
-    },
-  },
+  }
 }

@@ -13,6 +13,24 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Close unused emmpty buffers
+vim.api.nvim_create_autocmd("BufEnter", {
+  desc = "Close empty [No Name] buffer once a real file is opened",
+  callback = function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+      if vim.api.nvim_buf_get_name(buf) == ""
+        and vim.bo[buf].buftype == ""
+        and not vim.bo[buf].modified
+        and vim.api.nvim_buf_line_count(buf) == 1
+        and vim.api.nvim_buf_get_lines(buf, 0, -1, false)[1] == ""
+        and buf ~= vim.api.nvim_get_current_buf()
+      then
+        pcall(vim.api.nvim_buf_delete, buf, {})
+      end
+    end
+  end,
+})
+
 -- Prevent strange behavior with * in CSS
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "css", "scss", "less" },
