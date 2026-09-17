@@ -6,4 +6,15 @@ return {
   ---@module 'render-markdown'
   ---@type render.md.UserConfig
   opts = {},
+
+  config = function(_, opts)
+    vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#504945" })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#45403d" })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#3f3b38" })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#3a3735" })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#353331" })
+    vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#302f2d" })
+    require("render-markdown").setup(opts)
+  end,
+
 }
