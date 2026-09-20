@@ -198,6 +198,7 @@ if [[ -d "${TMUXIFIER_DIR}" ]]; then
 fi
 
 if command -v tmuxifier >/dev/null 2>&1; then
+  export TMUXIFIER_LAYOUT_PATH="${HOME}/.config/tmux/tmuxifier/layouts"
   eval "$(tmuxifier init -)"
   if [[ -z "${TMUX}" ]]; then
     tmuxifier load-session default
