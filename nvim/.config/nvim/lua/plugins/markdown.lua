@@ -1,22 +1,68 @@
 return {
-  'MeanderingProgrammer/render-markdown.nvim',
-  dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },            -- if you use the mini.nvim suite
-  -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-  -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-  ---@module 'render-markdown'
-  ---@type render.md.UserConfig
+  "tadmccorkle/markdown.nvim",
+  ft = "markdown", -- or 'event = "VeryLazy"'
   opts = {
-    render_modes = { 'n', 'c', 't' }
-  },
+    on_attach = function(bufnr)
+      local map = vim.keymap.set
 
-  config = function(_, opts)
-    vim.api.nvim_set_hl(0, "RenderMarkdownH1Bg", { bg = "#504945" })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH2Bg", { bg = "#45403d" })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH3Bg", { bg = "#3f3b38" })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH4Bg", { bg = "#3a3735" })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH5Bg", { bg = "#353331" })
-    vim.api.nvim_set_hl(0, "RenderMarkdownH6Bg", { bg = "#302f2d" })
-    require("render-markdown").setup(opts)
-  end,
+      local function set_heading(level)
+        local line = vim.api.nvim_get_current_line()
+        local content = line:gsub("^%s*#+%s*", "")
+        content = content:gsub("%s*#+%s*$", "")
 
+        if content == "" then
+          return
+        end
+
+        local prefix = string.rep("#", level) .. " "
+        vim.api.nvim_set_current_line(prefix .. content)
+      end
+
+      map("n", "<leader>hh", function()
+        set_heading(2)
+      end, { buffer = bufnr, desc = "Heading 2" })
+
+      map("n", "<leader>hj", function()
+        set_heading(3)
+      end, { buffer = bufnr, desc = "Heading 3" })
+
+      map("n", "<leader>hk", function()
+        set_heading(4)
+      end, { buffer = bufnr, desc = "Heading 4" })
+
+      map("n", "<leader>hl", function()
+        set_heading(5)
+      end, { buffer = bufnr, desc = "Heading 5" })
+
+      map("n", "<leader>h;", function()
+        set_heading(6)
+      end, { buffer = bufnr, desc = "Heading 6" })
+
+      map("x", "<leader>mc", function()
+        local start_line = vim.fn.line(".")
+        local end_line = vim.fn.line("v")
+
+        start_line, end_line = math.min(start_line, end_line),
+        math.max(start_line, end_line)
+
+        local lines = vim.api.nvim_buf_get_lines(
+          bufnr,
+          start_line - 1,
+          end_line,
+          false
+        )
+
+        table.insert(lines, 1, "```")
+        table.insert(lines, "```")
+
+        vim.api.nvim_buf_set_lines(
+          bufnr,
+          start_line - 1,
+          end_line,
+          false,
+          lines
+        )
+      end, { buffer = bufnr, desc = "Wrap in code block" })
+    end,
+  }
 }

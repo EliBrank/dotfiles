@@ -17,6 +17,25 @@ return {
     checkbox = {
       order = { " ", "x" },
     },
+
+    note_id_func = function(title)
+      local timestamp = os.date("%Y%m%d-%H%M%S")
+      return (title or "Untitled") .. " - " .. timestamp
+    end,
+
+    frontmatter = {
+      func = function(note)
+        if note.title then
+          note:add_alias(note.title)
+        end
+
+        return {
+          id = note.id,
+          aliases = note.aliases,
+          tags = note.tags,
+        }
+      end
+    },
   },
 
   ft = "markdown",
