@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
--- Close unused emmpty buffers
+-- Close unused empty buffers
 vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Close empty [No Name] buffer once a real file is opened",
   callback = function()
@@ -28,6 +28,14 @@ vim.api.nvim_create_autocmd("BufEnter", {
         pcall(vim.api.nvim_buf_delete, buf, {})
       end
     end
+  end,
+})
+
+-- Prevent concealment in markdown files
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.opt_local.conceallevel = 0
   end,
 })
 
