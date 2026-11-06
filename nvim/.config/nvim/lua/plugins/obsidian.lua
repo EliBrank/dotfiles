@@ -19,23 +19,39 @@ return {
     },
 
     note_id_func = function(title)
-      local timestamp = os.date("%Y%m%d-%H%M%S")
-      return (title or "Untitled") .. " - " .. timestamp
+      pending_title = title
+      return tostring(os.date("%Y%m%d-%H%M%S"))
     end,
 
-    frontmatter = {
-      func = function(note)
-        if note.title then
-          note:add_alias(note.title)
-        end
+    note_path_func = function(spec)
+      local filename = pending_title or spec.id
+      return (spec.dir / filename):with_suffix(".md")
+    end,
 
-        return {
-          id = note.id,
-          aliases = note.aliases,
-          tags = note.tags,
-        }
-      end
+    note = {
+      template = "Default.md",
     },
+
+    templates = {
+      folder = "Templates",
+      date_format = "YYYY-MM-DD",
+      time_format = "HH:mm",
+      substitutions = {},
+    },
+
+    -- frontmatter = {
+    --   func = function(note)
+    --     if note.title then
+    --       note:add_alias(note.title)
+    --     end
+    --
+    --     return {
+    --       id = note.id,
+    --       aliases = note.aliases,
+    --       tags = note.tags,
+    --     }
+    --   end
+    -- },
   },
 
   ft = "markdown",
