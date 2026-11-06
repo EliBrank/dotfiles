@@ -48,8 +48,8 @@ return {
     },
     {
       "<leader>of",
-      "<cmd>Obsidian quick_switch<cr>",
-      desc = "Quick Switch",
+      "<cmd>Obsidian follow_link<cr>",
+      desc = "Follow Link",
       ft = "markdown",
     },
     {

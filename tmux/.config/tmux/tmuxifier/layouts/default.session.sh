@@ -9,14 +9,20 @@ if initialize_session "default"; then
   # Create a new window inline within session layout definition.
   new_window "misc"
   new_window "notes"
+  new_window "config"
 
   # Select the default active window on session creation.
   select_window "notes"
   run_cmd "cd ~/Documents/Main"
   run_cmd "nvim -c 'Neotree filesystem current'"
 
+  select_window "config"
+  run_cmd "cd ~/dotfiles"
+  run_cmd "y"
+
   select_window "misc"
-  run_cmd "yazi"
+  run_cmd "cd ~/Code"
+  run_cmd "y"
 
 fi
 
