@@ -4,6 +4,7 @@
 # confirmation for deleting four+ files
 alias rm='rm -I'
 alias c='clear'
+alias ll='ls -lah'
 
 # -------------------------
 # C
