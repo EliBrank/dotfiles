@@ -18,40 +18,26 @@ return {
       order = { " ", "x" },
     },
 
-    note_id_func = function(title)
-      pending_title = title
-      return tostring(os.date("%Y%m%d-%H%M%S"))
-    end,
-
-    note_path_func = function(spec)
-      local filename = pending_title or spec.id
-      return (spec.dir / filename):with_suffix(".md")
-    end,
-
     note = {
-      template = "Default.md",
+      template = "Default.md"
     },
 
     templates = {
-      folder = "Templates",
-      date_format = "YYYY-MM-DD",
-      time_format = "HH:mm",
-      substitutions = {},
+      folder = "Templates"
     },
 
-    -- frontmatter = {
-    --   func = function(note)
-    --     if note.title then
-    --       note:add_alias(note.title)
-    --     end
-    --
-    --     return {
-    --       id = note.id,
-    --       aliases = note.aliases,
-    --       tags = note.tags,
-    --     }
-    --   end
-    -- },
+    note_id_func = function(title)
+      return title
+    end,
+
+    frontmatter = {
+      func = function(note)
+        return {
+          aliases = note.aliases,
+          tags = note.tags,
+        }
+      end,
+    },
   },
 
   ft = "markdown",
@@ -60,6 +46,14 @@ return {
       "<leader>ob",
       "<cmd>Obsidian backlinks<cr>",
       desc = "Backlinks",
+      ft = "markdown",
+    },
+    {
+      "<leader>od",
+      function()
+        require("obsidian.actions").delete_note()
+      end,
+      desc = "Delete Note",
       ft = "markdown",
     },
     {
