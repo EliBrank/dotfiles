@@ -4,7 +4,7 @@
 add_newline = false
 command_timeout = 500
 
-format = "$env_var$directory$rust$python$nodejs$git_branch$character"
+format = "$env_var$directory$rust$python$nodejs$git_branch$git_status$character"
 # right_format = "$git_branch"
 
 # -------------------------
@@ -17,7 +17,7 @@ style = "fg:white"
 format = "[$path]($style) "
 
 # -------------------------
-# Git (right side)
+# Git
 # -------------------------
 [git_branch]
 symbol = " "
