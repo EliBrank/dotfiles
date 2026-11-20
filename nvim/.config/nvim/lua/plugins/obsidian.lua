@@ -69,6 +69,12 @@ return {
       ft = "markdown",
     },
     {
+      "<leader>oo",
+      "<cmd>Obsidian quick_switch<cr>",
+      desc = "Quick Switch",
+      ft = "markdown",
+    },
+    {
       "<leader>or",
       "<cmd>Obsidian rename<cr>",
       desc = "Rename Note",
