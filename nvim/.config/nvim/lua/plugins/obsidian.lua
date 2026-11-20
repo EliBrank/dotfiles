@@ -8,20 +8,21 @@ return {
     workspaces = {
       {
         name = "Obsidian",
-        path = "~/Documents/Obsidian",
+        path = "~/Documents/Notes",
       },
     },
     ui = {
       enable = false
     },
+    cache = {
+      enabled = true
+    },
     checkbox = {
       order = { " ", "x" },
     },
-
     note = {
       template = "Default.md"
     },
-
     templates = {
       folder = "Templates"
     },
