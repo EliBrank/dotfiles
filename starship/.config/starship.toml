@@ -24,6 +24,9 @@ symbol = " "
 style = "fg:blue"
 format = "[$symbol$branch ]($style)"
 
+[git_status]
+# disabled = true
+
 # -------------------------
 # Languages
 # -------------------------
