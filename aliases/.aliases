@@ -5,6 +5,7 @@
 alias rm='rm -I'
 alias c='clear'
 alias ll='ls -lah'
+alias scu='systemctl --user'
 
 # -------------------------
 # C
