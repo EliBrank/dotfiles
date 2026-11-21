@@ -13,8 +13,8 @@ if initialize_session "default"; then
 
   # Select the default active window on session creation.
   select_window "notes"
-  run_cmd "cd ~/Documents/Main"
-  run_cmd "nvim -c 'Neotree filesystem current'"
+  run_cmd "cd ~/Documents/Notes"
+  run_cmd "nvim _TOC\ Home.md"
 
   select_window "config"
   run_cmd "cd ~/dotfiles"
